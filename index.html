@@ -14,6 +14,7 @@
         font-family: 'Inter', sans-serif;
         background-color: #0f172a; /* Slate 900 */
         color: white;
+        margin: 0;
       }
       .glass {
         background: rgba(27, 42, 73, 0.4);
@@ -45,6 +46,11 @@
         background: #FF6600;
         border-radius: 4px;
       }
+      /* Pre-loader state */
+      #root:empty {
+        min-height: 100vh;
+        background-color: #0f172a;
+      }
     </style>
     <script>
       tailwind.config = {
@@ -59,20 +65,62 @@
         }
       }
     </script>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "firebase/": "https://esm.sh/firebase@^12.7.0/",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "firebase/": "https://esm.sh/firebase@^12.7.0/"
   }
 }
 </script>
-</head>
+  </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Este conteúdo será exibido INSTANTANEAMENTE antes do React carregar -->
+      <nav class="sticky top-0 z-50 glass border-b border-white/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl font-black tracking-tighter text-white">TW <span class="text-primary">FIT</span></span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8 font-medium">
+            <a href="/" class="text-primary">Início</a>
+            <a href="#diferenciais" class="hover:text-primary transition-colors">Diferenciais</a>
+            <a href="#/login" class="bg-primary hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-bold orange-glow transition-all">Entrar</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="relative min-h-[90vh] flex items-center">
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070" class="w-full h-full object-cover opacity-30" />
+          <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="max-w-3xl space-y-8">
+            <h1 class="text-6xl md:text-8xl font-black leading-tight uppercase">
+              Supere seus <span class="text-primary italic">limites</span>
+            </h1>
+            <p class="text-xl text-gray-400">A experiência premium em musculação e performance que você merece.</p>
+            <div class="flex gap-4">
+               <a href="#/login" class="bg-primary text-white px-8 py-4 rounded-xl font-bold orange-glow">MATRICULE-SE AGORA</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="py-20 text-center text-gray-500 animate-pulse">
+        Carregando sistema interativo...
+      </div>
+    </div>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

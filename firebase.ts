@@ -7,16 +7,22 @@ import { getFirestore } from 'firebase/firestore';
 // COLE SUAS CREDENCIAIS DO FIREBASE AQUI
 // ==========================================
 const firebaseConfig = {
-  apiKey: "COLE_AQUI",
-  authDomain: "COLE_AQUI",
-  projectId: "COLE_AQUI",
-  storageBucket: "COLE_AQUI",
-  messagingSenderId: "COLE_AQUI",
-  appId: "COLE_AQUI"
+  apiKey: "COLE_SUAS_CHAVES_AQUI",
+  authDomain: "tw-fit.firebaseapp.com",
+  projectId: "tw-fit",
+  storageBucket: "tw-fit.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
 };
 
-// Se você ainda não tem as chaves, o app funcionará com dados simulados
-// em certas partes, mas o Auth e Firestore darão erro.
-const app = initializeApp(firebaseConfig);
+// O app iniciará mesmo sem chaves válidas para não quebrar o layout,
+// mas as funções de login e banco exigirão chaves reais.
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+} catch (e) {
+  console.error("Firebase initialization failed. Using mockup mode.", e);
+}
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
